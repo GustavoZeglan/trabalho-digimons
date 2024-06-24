@@ -1,0 +1,26 @@
+.Form {
+    gap: 8px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 50%;
+    color: white;
+
+    input {
+        padding: 8px;
+        width: 100%;
+    }
+
+    button {
+        background-color: #10acd8;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px;
+    }
+
+}
+
+.ErrorMessage {
+    color: #e34343;
+}

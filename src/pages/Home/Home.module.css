@@ -1,0 +1,10 @@
+.Container {
+    padding: 24px 64px;
+    width: 70%;
+    margin: auto;
+}
+
+.Card {
+    height: 200px;
+    background-size: cover;
+}
