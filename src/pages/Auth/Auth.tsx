@@ -10,7 +10,7 @@ type createUserFormData = z.infer<typeof createUserFormSchema>
 
 export const Auth = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } =
+    const { register, handleSubmit,formState: { errors, isValid } } =
         useForm<createUserFormData>({
             resolver: zodResolver(createUserFormSchema)
         })
@@ -27,11 +27,11 @@ export const Auth = () => {
             <Flex justify={"center"} align={"center"} style={{width:"100%", height:"100vh"}}>
                 <form className={styles.Form} onSubmit={handleSubmit(onSubmit)}>
                     <h2 style={{alignSelf: "center"}}>Autenticação</h2>
-                    <input placeholder={"E-mail:"} {...register("email")}/>
+                    <input placeholder={"O E-mail é obrigatório..."} {...register("email")}/>
                     {errors.email && <span className={styles.ErrorMessage}>{errors.email.message}</span>}
-                    <input placeholder={"Senha:"} {...register("password")}/>
+                    <input placeholder={"A senha precisa de no mínimo 8 caracteres..."} type={"password"} {...register("password")}/>
                     {errors.password && <span className={styles.ErrorMessage}>{errors.password.message}</span>}
-                    <button name={"btn"} style={{width:"100%"}}>
+                    <button disabled={!isValid} name={"btn"} style={{width:"100%", cursor: !isValid ? "not-allowed" : "pointer"}}>
                         <strong>
                             Login
                         </strong>

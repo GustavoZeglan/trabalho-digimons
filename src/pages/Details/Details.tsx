@@ -1,11 +1,12 @@
 import {useParams} from "react-router-dom";
 import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
-import {Flex} from "antd";
+import {Flex, Spin} from "antd";
 import {Digimon} from "../../model/Digimon";
 import {DigimonAside} from "../../components/DigimonAside/DigimonAside";
 import {DigimonInfo} from "../../components/DigimonInfo";
 import styles from "./Details.module.css";
+import {LoadingOutlined} from "@ant-design/icons";
 
 
 export const Details = () => {
@@ -28,8 +29,15 @@ export const Details = () => {
 
     return (
         <Flex justify={"center"} gap={"24px"} align={"start"} className={styles.Container}>
-            <DigimonInfo digimon={digimon!} />
-            <DigimonAside digimon={digimon!}/>
+            {
+                !digimon ? <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />}/>
+                    :
+                    <>
+                        <DigimonInfo digimon={digimon!} />
+                        <DigimonAside digimon={digimon!}/>
+                    </>
+            }
+
         </Flex>
 
     )
